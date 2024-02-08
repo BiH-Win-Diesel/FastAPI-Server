@@ -6,6 +6,7 @@ from deep_translator import GoogleTranslator
 import requests
 import tempfile
 from extractor import extract_information
+from urllib.parse import unquote
 
 r = sr.Recognizer()
 translator = GoogleTranslator()
@@ -14,6 +15,7 @@ app = FastAPI()
 
 
 def handling_url(url):
+    url=unquote(url)
     print(url)
     response = requests.get(url)
     if response.status_code == 200:
